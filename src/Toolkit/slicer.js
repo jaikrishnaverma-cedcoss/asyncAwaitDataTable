@@ -55,6 +55,7 @@ export const fetchAllCategories = createAsyncThunk('mainSlice/fetchAllCategories
     async ({ data, index, full_path = 'Amazon' }, control) => {
 
         let response = ''
+        try{
         response = await fetch('https://multi-account.sellernext.com/home/public/connector/profile/getAllCategory/', {
             method: "post",
             headers: {
@@ -80,7 +81,10 @@ export const fetchAllCategories = createAsyncThunk('mainSlice/fetchAllCategories
         })
 
         response = await response.json()
-
+    }
+    catch(error){
+        return control.rejectWithValue("Something wrong !")
+    }
         // console.log('cat api', response)
         if (!response.success) {
             return control.rejectWithValue(response.message)
@@ -93,8 +97,9 @@ export const fetchAllCategories = createAsyncThunk('mainSlice/fetchAllCategories
 // fetch Attributes
 export const fetchAllAttributes = createAsyncThunk('mainSlice/fetchAllAttributes',
     async (type, control) => {
-
-        let response = await fetch('https://multi-account.sellernext.com/home/public/connector/profile/getCategoryAttributes/', {
+        let response=''
+        try{
+         response = await fetch('https://multi-account.sellernext.com/home/public/connector/profile/getCategoryAttributes/', {
             method: "post",
             headers: {
                 Accept: "application/json",
@@ -123,6 +128,10 @@ export const fetchAllAttributes = createAsyncThunk('mainSlice/fetchAllAttributes
                 })
         });
         response = await response.json()
+    }
+    catch(error){
+        return control.rejectWithValue("Something wrong !")
+    }
         if (!response.success) {
             return control.rejectWithValue(response.message)
         }
