@@ -41,7 +41,7 @@ function FormAttribute({ label, data, index }) {
   const options = data.map(x => { return { label: x, value: x } })
 
   return (
-    <div className="mar">
+    <div className="mar greenBorder">
       <Select
         label={label}
         options={options}

@@ -39,3 +39,9 @@ h2 {
     font-size: 16px;
     font-weight: 700;
 }
+
+.greenBorder{
+    border:1px solid green;
+    padding: 10px;
+    border-radius: 5px;
+}
